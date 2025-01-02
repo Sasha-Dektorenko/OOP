@@ -10,8 +10,11 @@ public class TrainingGame : Game
     }
     protected override void HandleGameEnd(GameAccount winner, GameAccount loser)
     {
-        Console.WriteLine($"{winner.UserName} won {loser.UserName}");
-        Console.WriteLine("No points awarded for a training game.");
+        if (winner != null || loser != null)
+        {
+            Console.WriteLine($"{winner.UserName} won {loser.UserName}");
+            Console.WriteLine("No points awarded for a training game.");
+        } 
         Winner = winner;
         Looser = loser;
     }

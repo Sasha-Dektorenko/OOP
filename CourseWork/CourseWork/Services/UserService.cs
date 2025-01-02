@@ -64,10 +64,22 @@ public class UserService : IUserService
 
                 foreach (var game in userGames)
                 {
-                    var opponent = game.Winner == user ? game.Looser.UserName : game.Winner.UserName;
-                    var result = game.Winner == user ? "Win" : "Loss";
-                    var points = game.Points;
-                    var gameId = game.GameID;
+                    string opponent, result;
+                    int points, gameId;
+                    if (game.Winner != null || game.Looser != null)
+                    {
+                        opponent = game.Winner == user ? game.Looser.UserName : game.Winner.UserName;
+                        result = game.Winner == user ? "Win" : "Loss";
+                        points = game.Points;
+                        gameId = game.GameID;
+                    }
+                    else
+                    {
+                        gameId = game.GameID;
+                        opponent = game.CrossPlayer == user ? game.ZeroPlayer.UserName : game.CrossPlayer.UserName;
+                        result = "Draw";
+                        points = game.Points;
+                    }
 
 
                     Console.WriteLine($"| {gameId,-6} | {opponent,-14} | {result,-8} | {points,-6} |");
