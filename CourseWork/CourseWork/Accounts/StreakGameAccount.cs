@@ -10,7 +10,7 @@ public class StreakGameAccount : GameAccount
 
     public int streak { get; private set; }
 
-    protected override void RatingCount(Game game)
+    public override void RatingCount(Game game)
     {
         if (game.Winner == this)
         {

@@ -31,6 +31,6 @@ public class GameRepo : IGameRepo
 
     public List<Game> GetGamesByPlayerID(int id)
     {
-        return GetAllGames().Where(game => game.Player1.UserID == id || game.Player2.UserID == id).ToList();
+        return GetAllGames().Where(game => game.Winner.UserID == id || game.Looser.UserID == id).ToList();
     } 
 }

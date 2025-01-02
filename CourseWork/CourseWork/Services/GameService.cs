@@ -30,8 +30,8 @@ public class GameService : IGameService
         gameRepo.AddGame(game);
         game.Play();
         
-        player1.GameResult(game);
-        player2.GameResult(game);
+        player1.RatingCount(game);
+        player2.RatingCount(game);
     }
 
     public void DisplayGameById(int id)

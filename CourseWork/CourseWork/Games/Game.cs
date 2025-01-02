@@ -6,8 +6,6 @@ public abstract class Game
     private static int gameID;
     public int GameID { get; }
     public abstract string GameType { get; }
-    public GameAccount Player1 { get; }
-    public GameAccount Player2 { get; }
     public GameAccount CrossPlayer { get; }
     public GameAccount ZeroPlayer { get; }
     public int Points { get; protected set; }
@@ -19,8 +17,7 @@ public abstract class Game
     public Game(GameAccount player1, GameAccount player2)
     {
         GameID = ++gameID;
-        Player1 = player1;
-        Player2 = player2;
+        
 
         Board = new char[3, 3]
         {
@@ -29,18 +26,18 @@ public abstract class Game
             { ' ', ' ', ' ' }
         };
         
-        Console.WriteLine($"Player 1 ({Player1.UserName}), do you want to play as X (Cross)? (yes/no): ");
+        Console.WriteLine($"Player 1 ({player1.UserName}), do you want to play as X (Cross)? (yes/no): ");
         string choice = Console.ReadLine()?.ToLower();
 
         if (choice.Equals("yes", StringComparison.OrdinalIgnoreCase))
         {
-            CrossPlayer = Player1;
-            ZeroPlayer = Player2;
+            CrossPlayer = player1;
+            ZeroPlayer = player2;
         }
         else
         {
-            CrossPlayer = Player2;
-            ZeroPlayer = Player1;
+            CrossPlayer = player2;
+            ZeroPlayer = player1;
         }
         
         CurrentPlayer = CrossPlayer;
